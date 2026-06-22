@@ -4,7 +4,7 @@ const router = Router();
 
 const usuarios = [
   { id: 1, nome: "Gabriel Leonel", perfil: "GERENTE" },
-  { id: 2, nome: "Ana Costa", perfil: "OPERADOR" }
+  { id: 2, nome: "Neymar Jr", perfil: "OPERADOR" }
 ];
  
 router.get('/usuarios', (req: Request, res: Response) => {

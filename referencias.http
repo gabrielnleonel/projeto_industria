@@ -18,3 +18,43 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/usuarios/99
 Accept: application/json
+
+### POST Criar um novo produto 201 Created
+POST http://localhost:3000/api/produtos
+Content-Type: application/json
+
+{
+  "nome": "Viga de Cambará",
+  "quantidade": 60,
+  "tipoMadeira": "Cambará"
+}
+
+###
+
+### GET Listar todos os produtos 200 OK
+GET http://localhost:3000/api/produtos
+Accept: application/json
+
+###
+
+### PUT Atualizar o produto por ID 200 OK
+
+PUT http://localhost:3000/api/produtos/3
+Content-Type: application/json
+
+{
+  "nome": "Viga de Eucalipto Tratada",
+  "quantidade": 55,
+  "tipoMadeira": "Eucalipto"
+}
+
+###
+
+### 2d. DELETE 204 No Content
+DELETE http://localhost:3000/api/produtos/3
+
+###
+
+### 2e. GET - Buscar o ID removido para validar o erro (Esperado: 404 Not Found)
+GET http://localhost:3000/api/produtos/3
+Accept: application/json
