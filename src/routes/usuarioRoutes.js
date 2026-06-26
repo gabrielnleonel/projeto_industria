@@ -1,4 +1,4 @@
-import { Router, type Request, type Response } from 'express';
+import { Router } from 'express';
 
 const router = Router();
 
@@ -7,11 +7,11 @@ const usuarios = [
   { id: 2, nome: "Neymar Jr", perfil: "OPERADOR" }
 ];
  
-router.get('/usuarios', (req: Request, res: Response) => {
+router.get('/usuarios', (req, res) => {
   res.status(200).json(usuarios);
 });
 
-router.get('/usuarios/:id', (req: Request, res: Response) => {
+router.get('/usuarios/:id', (req, res) => {
   const { id } = req.params;
 
   const usuarioId = id ? parseInt(String(id)) : NaN;
@@ -28,7 +28,7 @@ router.get('/usuarios/:id', (req: Request, res: Response) => {
   res.status(200).json(usuario);
 });
 
-router.post('/usuarios', (req: Request, res: Response) => {
+router.post('/usuarios', (req, res) => {
   const { nome, perfil } = req.body;
   
   if (!nome || !perfil) {

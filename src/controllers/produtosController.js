@@ -1,10 +1,9 @@
-import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // 1. CRIAR PRODUTO (POST)
-export const criarProduto = async (req: Request, res: Response) => {
+export const criarProduto = async (req, res) => {
   try {
     const { nome, quantidade, tipoMadeira } = req.body;
 
@@ -27,7 +26,7 @@ export const criarProduto = async (req: Request, res: Response) => {
 };
 
 // 2. LISTAR TODOS OS PRODUTOS (GET)
-export const listarProdutos = async (req: Request, res: Response) => {
+export const listarProdutos = async (req, res) => {
   try {
     const produtos = await prisma.produto.findMany();
     return res.status(200).json(produtos);
@@ -37,7 +36,7 @@ export const listarProdutos = async (req: Request, res: Response) => {
 };
 
 // 3. BUSCAR PRODUTO POR ID (GET por ID)
-export const buscarProdutoPorId = async (req: Request, res: Response) => {
+export const buscarProdutoPorId = async (req, res) => {
   try {
     const { id } = req.params;
     const produtoId = Number(id);
@@ -57,7 +56,7 @@ export const buscarProdutoPorId = async (req: Request, res: Response) => {
 };
 
 // 4. ATUALIZAR PRODUTO (PUT)
-export const atualizarProduto = async (req: Request, res: Response) => {
+export const atualizarProduto = async (req, res) => {
   try {
     const { id } = req.params;
     const { nome, quantidade, tipoMadeira } = req.body;
@@ -73,7 +72,7 @@ export const atualizarProduto = async (req: Request, res: Response) => {
     }
 
     // Atualiza apenas os campos enviados na requisição
-    const produtoAtualizado = await (prisma.produto as any).update({
+    const produtoAtualizado = await prisma.produto.update({
       where: { id: produtoId },
       data: {
         nome: nome || undefined,
@@ -89,7 +88,7 @@ export const atualizarProduto = async (req: Request, res: Response) => {
 };
 
 // 5. DELETAR PRODUTO (DELETE)
-export const deletarProduto = async (req: Request, res: Response) => {
+export const deletarProduto = async (req, res) => {
   try {
     const { id } = req.params;
     const produtoId = Number(id);
@@ -113,7 +112,7 @@ export const deletarProduto = async (req: Request, res: Response) => {
   }
 };
 
-export const criarMateriaPrima = async (req: Request, res: Response) => {
+export const criarMateriaPrima = async (req, res) => {
   try {
     const { nome, estoque_m3, custo_m3 } = req.body;
 
