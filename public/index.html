@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel da Indústria de Madeira</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; background-color: #f4f4f9; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #333; margin-top: 0; }
+        input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #2b8a3e; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #237032; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Cadastrar Peça de Madeira (Produto)</h2>
+        <form id="formProduto">
+            <input type="text" id="nome" placeholder="Nome da peça (Ex: Viga de Eucalipto)" required>
+            <input type="number" id="quantidade" placeholder="Quantidade" required>
+            <input type="text" id="tipoMadeira" placeholder="Tipo de Madeira (Ex: Eucalipto)" required>
+            <button type="submit">Salvar no Banco</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formProduto').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const dados = {
+                nome: document.getElementById('nome').value,
+                quantidade: Number(document.getElementById('quantidade').value),
+                tipoMadeira: document.getElementById('tipoMadeira').value
+            };
+
+            try {
+                // Dispara os dados para a sua rota de produtos do backend
+                const resposta = await fetch('http://localhost:3000/produtos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+
+                if (resposta.ok) {
+                    alert('Peça cadastrada com sucesso! Verifique o Prisma Studio.');
+                    document.getElementById('formProduto').reset();
+                } else {
+                    const erro = await resposta.json();
+                    alert('Erro ao cadastrar: ' + (erro.erro || 'Falha no servidor'));
+                }
+            } catch (error) {
+                alert('Não foi possível conectar ao servidor. O backend está rodando?');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -32,6 +32,15 @@ CREATE TABLE "OrdemCorte" (
     CONSTRAINT "OrdemCorte_pkey" PRIMARY KEY ("id")
 );
 
+CREATE TABLE "Produto" (
+    "id" SERIAL NOT NULL,
+    "nome" TEXT NOT NULL,
+    "quantidade" INTEGER NOT NULL,
+    "tipoMadeira" TEXT NOT NULL,
+
+    CONSTRAINT "Produto_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Usuario_email_key" ON "Usuario"("email");
 

@@ -58,3 +58,17 @@ DELETE http://localhost:3000/api/produtos/3
 ### 2e. GET - Buscar o ID removido para validar o erro (Esperado: 404 Not Found)
 GET http://localhost:3000/api/produtos/3
 Accept: application/json
+
+### Cadastrar Matéria-Prima (RF002)
+POST http://localhost:3000/materias-primas
+Content-Type: application/json
+
+{
+  "nome": "Toras de Pinus - Lote 14",
+  "estoque_m3": 45.00,
+  "custo_m3": 120.00
+}
+
+### Listar Todas as Matérias-Primas 
+GET http://localhost:3000/materias-primas
+Content-Type: application/json

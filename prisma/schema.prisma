@@ -34,3 +34,10 @@ model OrdemCorte {
   usuario          Usuario      @relation(fields: [usuarioId], references: [id])
   materiaPrima     MateriaPrima @relation(fields: [materiaPrimaId], references: [id])
 }
+
+model Produto {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  quantidade  Int
+  tipoMadeira String
+}
