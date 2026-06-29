@@ -112,6 +112,7 @@ export const deletarProduto = async (req, res) => {
   }
 };
 
+// 6. CADASTRAR MATÉRIA-PRIMA
 export const criarMateriaPrima = async (req, res) => {
   try {
     const { nome, estoque_m3, custo_m3 } = req.body;

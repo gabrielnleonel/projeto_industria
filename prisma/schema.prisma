@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("postgresql://postgres:senai@localhost:5432/projeto_industria?schema=public")
 }
 
 model Usuario {
